@@ -2,7 +2,7 @@ import pandas as pd
 import firebase_admin
 from firebase_admin import db
 
-cred_obj = firebase_admin.credentials.Certificate("Firebase/certificate.json")
+cred_obj = firebase_admin.credentials.Certificate("Data_Analysis_Visualization/certificate.json")
 default_app = firebase_admin.initialize_app(cred_obj,
                                             {
                                                 'databaseURL': "https://air-pollution-monitoring-a88eb-default-rtdb"
