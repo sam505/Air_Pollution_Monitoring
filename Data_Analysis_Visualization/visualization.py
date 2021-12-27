@@ -22,7 +22,7 @@ def main():
     df['date'] = df['index'].dt.date
     dates = df.date
     date_range = st.sidebar.slider(
-        'Select a range of values',
+        'Select a range of Dates',
         dates[0], dates[len(dates) - 1],
         (dates[int(0.1 * len(dates))], dates[int(0.25 * len(dates))]),
         step=timedelta(days=1)
