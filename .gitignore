@@ -1,4 +1,6 @@
-Data_Analysis_Visualization/.idea
+Data_Analysis_Visualization/.idea/
 venv
 .idea
-Data_Analysis_Visualization/.ipynb_checkpoints
+Data_Analysis_Visualization/.ipynb_checkpoints/
+Data_Analysis_Viaualization/__pycache__/
+Data_Analysis_Viaualization/certificate.json
