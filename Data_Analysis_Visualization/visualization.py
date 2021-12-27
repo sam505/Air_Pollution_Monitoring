@@ -6,7 +6,7 @@ import pandas as pd
 
 
 def main():
-    st.set_page_config(page_title="Air Pollution Dashboard", page_icon=None, layout='wide',
+    st.set_page_config(page_title="Air Pollution Dashboard", page_icon="chart_with_upwards_trend", layout='wide',
                        initial_sidebar_state='auto')
     st.title("Air Pollution Dashboard")
     filename = read_data()
