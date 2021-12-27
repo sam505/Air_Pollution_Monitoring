@@ -58,7 +58,6 @@ def read_data():
             mq135.append(float(values[1]))
             temp.append(float(values[2]))
             humidity.append(float(values[3]))
-    print(len(datetime), len(mq7), len(mq135), len(temp), len(humidity))
     values_dict = {
         "timestamp": datetime,
         "mq7": mq7,
@@ -67,7 +66,7 @@ def read_data():
         "humidity": humidity
     }
     df = pd.DataFrame(values_dict)
-    filename = "data.csv"
+    filename = "Data_Analysis_Visualization/data.csv"
     df.set_index("timestamp", inplace=True)
     df.to_csv(filename)
     return filename
