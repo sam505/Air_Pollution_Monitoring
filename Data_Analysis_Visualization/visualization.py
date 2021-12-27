@@ -20,18 +20,16 @@ def main():
     df["timestamp"] = df["timestamp"].dt.tz_localize('UTC')
     df = df.rename(columns={'timestamp': 'index'})
     df['date'] = df['index'].dt.date
-    # date_range = st.sidebar.slider(
-    #     "Select dates",
-    #     df["date"],
-    #     [df.date[0], df.date[10]]
-    #                                )
     dates = df.date
     date_range = st.sidebar.slider(
         'Select a range of values',
         dates[0], dates[len(dates) - 1],
-        (dates[int(0.25 * len(dates))], dates[int(0.5 * len(dates))]),
+        (dates[int(0.1 * len(dates))], dates[int(0.25 * len(dates))]),
         step=timedelta(days=1)
     )
+    df = df[df.date.isin([date_range[0], date_range[1]])]
+    print(df)
+    st.text(date_range)
     df_mq7 = df[["index", "mq7"]].set_index('index')
     df_mq135 = df[["index", "mq135"]].set_index('index')
     df_temp = df[["index", "temperature"]].set_index('index')
