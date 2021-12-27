@@ -18,15 +18,15 @@ def main():
     df_mq135 = df[["index", "mq135"]].set_index('index')
     df_temp = df[["index", "temperature"]].set_index('index')
     df_humidity = df[["index", "humidity"]].set_index('index')
-    st.text(df_mq7)
+    # st.text(df_mq7)
     st.line_chart(df_mq7)
-    st.text(df_mq135)
+    # st.text(df_mq135)
     st.line_chart(df_mq135)
-    st.text(df_temp)
+    # st.text(df_temp)
     st.line_chart(df_temp)
-    st.text(df_humidity)
+    # st.text(df_humidity)
     st.line_chart(df_humidity)
-    st.text(df)
+    # st.text(df)
 
 
 if __name__ == "__main__":

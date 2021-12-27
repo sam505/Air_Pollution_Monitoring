@@ -23,18 +23,27 @@ def read_data():
     data = ref.get()
     variables = data["data"].keys()
     for variable in variables:
-        values = data["data"][variable]
-        values = values.split("#")
-        values = values[:4]
+        raw_values = data["data"][variable]
         try:
+            assert raw_values[0] == "#"
+            assert raw_values[1] != "#"
+            values = raw_values.split("#")[1:5]
+        except AssertionError:
+            values = raw_values.split("##")[1]
+            values = values.split("#")
+        try:
+            for i in range(4):
+                float(values[i])
+        except ValueError:
+            print(raw_values)
+            print(values)
+            pass
+        else:
             datetime.append(variable)
             mq7.append(float(values[0]))
             mq135.append(float(values[1]))
             temp.append(float(values[2]))
             humidity.append(float(values[3]))
-        except ValueError:
-            print(values)
-            pass
     print(len(datetime), len(mq7), len(mq135), len(temp), len(humidity))
     values_dict = {
         "timestamp": datetime,
