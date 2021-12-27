@@ -1,13 +1,27 @@
 import pandas as pd
 import firebase_admin
 from firebase_admin import db
+import os
+import pickle
+import json
 
-cred_obj = firebase_admin.credentials.Certificate("Data_Analysis_Visualization/certificate.json")
+
+def pickle_to_json():
+    with open("Data_Analysis_Visualization/certificate.pickle", "rb") as data:
+        data = pickle.load(data)
+    with open(filename, 'w') as fp:
+        json.dump(data, fp)
+
+
+filename = "Data_Analysis_Visualization/certificate.json"
+pickle_to_json()
+cred_obj = firebase_admin.credentials.Certificate(filename)
 default_app = firebase_admin.initialize_app(cred_obj,
                                             {
                                                 'databaseURL': "https://air-pollution-monitoring-a88eb-default-rtdb"
                                                                ".firebaseio.com/"})
 ref = db.reference("/")
+os.remove(filename)
 
 
 def main():
