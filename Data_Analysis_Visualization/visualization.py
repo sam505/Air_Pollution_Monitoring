@@ -28,7 +28,6 @@ def main():
         step=timedelta(days=1)
     )
     df = df[df.date.isin([date_range[0], date_range[1]])]
-    print(df)
     st.text(date_range)
     df_mq7 = df[["index", "mq7"]].set_index('index')
     df_mq135 = df[["index", "mq135"]].set_index('index')
