@@ -21,7 +21,6 @@ default_app = firebase_admin.initialize_app(cred_obj,
                                                 'databaseURL': "https://air-pollution-monitoring-a88eb-default-rtdb"
                                                                ".firebaseio.com/"})
 ref = db.reference("/")
-data = ref.get()
 os.remove(filename)
 
 
@@ -30,6 +29,7 @@ def main():
 
 
 def read_data():
+    data = ref.get()
     datetime = []
     mq7 = []
     mq135 = []
