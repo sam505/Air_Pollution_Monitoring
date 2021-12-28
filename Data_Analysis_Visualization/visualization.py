@@ -48,8 +48,9 @@ def main():
         step=timedelta(days=1)
     )
     df = df[(df['date'] >= date_range[0]) & (df['date'] <= date_range[1])]
-    # df = df[df.date.isin([date_range[0], date_range[1]])]
+    st.text(f"Shape of Dataset {df.shape}")
     plot(df)
+    st.dataframe(df)
 
 
 if __name__ == "__main__":
