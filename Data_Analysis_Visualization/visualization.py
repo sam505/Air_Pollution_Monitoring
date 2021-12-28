@@ -47,7 +47,8 @@ def main():
         (dates[int(0.1 * len(dates))], dates[int(0.25 * len(dates))]),
         step=timedelta(days=1)
     )
-    df = df[df.date.isin([date_range[0], date_range[1]])]
+    df = df[(df['date'] >= date_range[0]) & (df['date'] <= date_range[1])]
+    # df = df[df.date.isin([date_range[0], date_range[1]])]
     plot(df)
 
 
