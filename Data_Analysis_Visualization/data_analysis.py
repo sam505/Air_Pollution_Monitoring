@@ -49,9 +49,11 @@ def read_data():
             values = raw_values.split("##")[1]
             values = values.split("#")
         except ValueError:
-            values = raw_values.split("##")[1]
-            values = values.split("#")
-            pass
+            try:
+                values = raw_values.split("##")[1]
+                values = values.split("#")
+            except IndexError:
+                pass
         else:
             datetime.append(variable)
             mq7.append(float(values[0]))

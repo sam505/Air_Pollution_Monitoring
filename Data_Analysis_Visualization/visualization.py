@@ -1,5 +1,4 @@
 from datetime import timedelta
-
 from data_analysis import read_data
 import streamlit as st
 import pandas as pd
@@ -37,7 +36,7 @@ def main():
     )
     st.text(select_data)
     df["timestamp"] = pd.to_datetime(df['timestamp'], unit='s')
-    df["timestamp"] = df["timestamp"].dt.tz_localize('UTC')
+    df["timestamp"] = df["timestamp"].dt.tz_localize("UTC")
     df = df.rename(columns={'timestamp': 'index'})
     df['date'] = df['index'].dt.date
     dates = df.date
