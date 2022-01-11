@@ -2,21 +2,28 @@ from datetime import timedelta
 from data_analysis import read_data
 import streamlit as st
 import pandas as pd
+import plotly.express as px
+
+
+def line_chart(df, x, y, title):
+    fig = px.line(df, x=x, y=y)
+    fig.update_xaxes(title_text='Date/Time')
+    fig.update_yaxes(title_text='Parts Per Million (PPM)')
+    fig.update_layout(
+        title={
+            'text': title,
+            'x': 0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'
+        })
+    st.plotly_chart(fig, use_container_width=True)
 
 
 def plot(df):
-    df_mq7 = df[["index", "mq7"]].set_index('index')
-    df_mq135 = df[["index", "mq135"]].set_index('index')
-    df_temp = df[["index", "temperature"]].set_index('index')
-    df_humidity = df[["index", "humidity"]].set_index('index')
-    st.subheader("MQ7 Sensor Data")
-    st.line_chart(df_mq7)
-    st.subheader("MQ135 Sensor Data")
-    st.line_chart(df_mq135)
-    st.subheader("Temperature Data")
-    st.line_chart(df_temp)
-    st.subheader("Humidity Data")
-    st.line_chart(df_humidity)
+    line_chart(df, "datetime", "mq7", "MQ7 Sensor Data")
+    line_chart(df, "datetime", "mq135", "MQ135 Sensor Data")
+    line_chart(df, "datetime", "humidity", "Humidity Sensor Data")
+    line_chart(df, "datetime", "temperature", "Temperature Sensor Data")
 
 
 def main():
@@ -25,7 +32,7 @@ def main():
         page_icon="chart_with_upwards_trend",
         layout='wide',
         initial_sidebar_state='auto'
-                       )
+    )
     st.title("Air Pollution Dashboard")
     filename = read_data()
     df = pd.read_csv(filename)
@@ -37,8 +44,8 @@ def main():
     st.text(select_data)
     df["timestamp"] = pd.to_datetime(df['timestamp'], unit='s')
     df["timestamp"] = df["timestamp"].dt.tz_localize("UTC")
-    df = df.rename(columns={'timestamp': 'index'})
-    df['date'] = df['index'].dt.date
+    df = df.rename(columns={'timestamp': 'datetime'})
+    df['date'] = df['datetime'].dt.date
     dates = df.date
     date_range = st.sidebar.slider(
         'Select a range of Dates',

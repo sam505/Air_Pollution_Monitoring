@@ -5,16 +5,19 @@ import os
 import pickle
 import json
 
+filename = "Data_Analysis_Visualization/certificate.json"
+pickle_path = "Data_Analysis_Visualization/certificate.pickle"
+
 
 def pickle_to_json():
-    with open("Data_Analysis_Visualization/certificate.pickle", "rb") as data:
+    with open(pickle_path, "rb") as data:
         data = pickle.load(data)
     with open(filename, 'w') as fp:
         json.dump(data, fp)
 
 
-filename = "Data_Analysis_Visualization/certificate.json"
 pickle_to_json()
+
 cred_obj = firebase_admin.credentials.Certificate(filename)
 default_app = firebase_admin.initialize_app(cred_obj,
                                             {
