@@ -4,7 +4,7 @@
 
 // Set these to run example.
 #define FIREBASE_HOST "air-pollution-monitoring-a88eb-default-rtdb.firebaseio.com"
-#define FIREBASE_AUTH "ufye7SB1GiULKeTgXZmwN7Tyy0pauHj6DzC2Uv2I"
+#define FIREBASE_AUTH "ylPm6U3PT5b3WITs1kHJlaFIDBxfB4qsDm9iU3pM"
 
 #define WIFI_SSID "GUEST"
 #define WIFI_PASSWORD "@m@in@123@"
@@ -85,12 +85,12 @@ void loop() {
     if (Sr == true) {
 
       if (data == "") {
-        Firebase.setString("data/" + String(epoch), "None");
+        Firebase.setString("demo/" + String(epoch), "None");
         Firebase.setInt("status/" + String(epoch), 0);
       }
 
       if (data != "") {
-        Firebase.setString("data/" + String(epoch), String(data));
+        Firebase.setString("demo/" + String(epoch), String(data));
         delay(10);
       }
 
@@ -101,7 +101,7 @@ void loop() {
     }
   }
   Serial.flush(); // Delete all values in the serial monitor
-  delay(300000); // delay for 5 mins before checking for new values in the serial monitor
+  delay(10000); // delay for 5 mins before checking for new values in the serial monitor
 }
 
 // send an NTP request to the time server at the given address

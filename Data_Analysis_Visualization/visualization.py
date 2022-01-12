@@ -5,10 +5,10 @@ import pandas as pd
 import plotly.express as px
 
 
-def line_chart(df, x, y, title):
+def line_chart(df, x, y, units, title):
     fig = px.line(df, x=x, y=y)
     fig.update_xaxes(title_text='Date/Time')
-    fig.update_yaxes(title_text='Parts Per Million (PPM)')
+    fig.update_yaxes(title_text=units)
     fig.update_layout(
         title={
             'text': title,
@@ -20,10 +20,10 @@ def line_chart(df, x, y, title):
 
 
 def plot(df):
-    line_chart(df, "datetime", "mq7", "MQ7 Sensor Data")
-    line_chart(df, "datetime", "mq135", "MQ135 Sensor Data")
-    line_chart(df, "datetime", "humidity", "Humidity Sensor Data")
-    line_chart(df, "datetime", "temperature", "Temperature Sensor Data")
+    line_chart(df, "datetime", "mq7", "Parts Per Million (PPM), CO","MQ7 Sensor Data")
+    line_chart(df, "datetime", "mq135", "Parts Per Million (PPM), Air Quality", "MQ135 Sensor Data")
+    line_chart(df, "datetime", "humidity", "Relative Humidity (%)", "Humidity Sensor Data")
+    line_chart(df, "datetime", "temperature", "Degrees Celsius (°C)", "Temperature Sensor Data")
 
 
 def main():
