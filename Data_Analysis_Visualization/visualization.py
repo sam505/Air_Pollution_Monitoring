@@ -53,10 +53,10 @@ def main():
     df = pd.read_csv(filename)
     df = df.dropna()
     select_data = st.sidebar.selectbox(
-        "Which data would you like to visualize?",
+        "Choose the Data to Visualize Below",
         ("Actual", "Hourly", "Daily")
     )
-    st.text(select_data)
+
     df["timestamp"] = pd.to_datetime(df['timestamp'], unit='s')
     df["timestamp"] = df["timestamp"].dt.tz_localize("UTC")
     df = sample_data(df, select_data)
