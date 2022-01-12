@@ -19,6 +19,21 @@ def line_chart(df, x, y, units, title):
     st.plotly_chart(fig, use_container_width=True)
 
 
+def sample_data(df, choice):
+    if choice == "Hourly":
+        raw_df = df.set_index("timestamp")
+        df = raw_df.resample(rule='H').mean()
+        df.reset_index(inplace=True)
+        return df
+    elif choice == "Daily":
+        raw_df = df.set_index("timestamp")
+        df = raw_df.resample(rule='D').mean()
+        df.reset_index(inplace=True)
+        return df
+    else:
+        return df
+
+
 def plot(df):
     line_chart(df, "datetime", "mq7", "Parts Per Million (PPM), CO","MQ7 Sensor Data")
     line_chart(df, "datetime", "mq135", "Parts Per Million (PPM), Air Quality", "MQ135 Sensor Data")
@@ -39,18 +54,19 @@ def main():
     df = df.dropna()
     select_data = st.sidebar.selectbox(
         "Which data would you like to visualize?",
-        ("Actual", "Predicted", "Both")
+        ("Actual", "Hourly", "Daily")
     )
     st.text(select_data)
     df["timestamp"] = pd.to_datetime(df['timestamp'], unit='s')
     df["timestamp"] = df["timestamp"].dt.tz_localize("UTC")
+    df = sample_data(df, select_data)
     df = df.rename(columns={'timestamp': 'datetime'})
     df['date'] = df['datetime'].dt.date
-    dates = df.date
+    dates = df.date.to_list()
     date_range = st.sidebar.slider(
         'Select a range of Dates',
         dates[0], dates[len(dates) - 1],
-        (dates[int(0.1 * len(dates))], dates[int(0.25 * len(dates))]),
+        (dates[0], dates[-1]),
         step=timedelta(days=1)
     )
     df = df[(df['date'] >= date_range[0]) & (df['date'] <= date_range[1])]
