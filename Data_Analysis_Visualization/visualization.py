@@ -99,7 +99,7 @@ def main():
                 'xanchor': 'center',
                 'yanchor': 'top'
             })
-        st.plotly_chart(fig1)
+        st.plotly_chart(fig1, use_container_width=True)
 
         fig2 = go.Figure()
         fig2.add_trace(go.Scatter(x=df.timestamp, y=df.mq135,
@@ -117,7 +117,7 @@ def main():
                 'xanchor': 'center',
                 'yanchor': 'top'
             })
-        st.plotly_chart(fig2)
+        st.plotly_chart(fig2, use_container_width=True)
 
 
 if __name__ == "__main__":
