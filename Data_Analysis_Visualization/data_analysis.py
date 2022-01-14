@@ -10,6 +10,8 @@ pickle_path = "Data_Analysis_Visualization/certificate.pickle"
 
 
 def pickle_to_json():
+    """
+    """
     with open(pickle_path, "rb") as data:
         data = pickle.load(data)
     with open(filename, 'w') as fp:
@@ -38,9 +40,10 @@ def read_data():
     mq135 = []
     temp = []
     humidity = []
-    variables = data["data"].keys()
+    data = data["data"]
+    variables = data.keys()
     for variable in variables:
-        raw_values = data["data"][variable]
+        raw_values = data[variable]
         try:
             assert raw_values[0] == "#"
             assert raw_values[1] != "#"

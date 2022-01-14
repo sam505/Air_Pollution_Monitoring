@@ -34,8 +34,8 @@ void loop() {
   sensorValue = analogRead(sensorPin);
   sensorValue1 = analogRead(sensorPin1);
   values = "#" + String(sensorValue) + "#" + String(sensorValue1) + "#" + String(temperature)+ "#" + String(humidity)+"#";
-  Serial.print(values);
+  Serial.println(values);
   Serial.flush();
-  delay(600000);                                  // wait 10 mins for next reading
+  delay(10000);                                  // wait 10 seconds for next reading
 
 }
