@@ -6,8 +6,8 @@ import pickle
 import json
 
 
-filename = "certificate.json"
-pickle_path = "certificate.pickle"
+filename = "Data_Analysis_Visualization/certificate.json"
+pickle_path = "Data_Analysis_Visualization/certificate.pickle"
 
 
 def pickle_to_json():
