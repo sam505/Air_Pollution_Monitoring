@@ -42,7 +42,7 @@ def plot(df):
     line_chart(df, "datetime", "humidity", "Relative Humidity (%)", "Humidity Sensor Data")
     line_chart(df, "datetime", "temperature", "Degrees Celsius (°C)", "Temperature Sensor Data")
 
-@st.cache_data
+
 def main():
     filename = read_data("data")
     df = pd.read_csv(filename)
