@@ -6,3 +6,4 @@ Data_Analysis_Visualization/__pycache__/
 Data_Analysis_Visualization/certificate.json
 Data_Analysis_Visualization/data*
 */*.csv
+*.csv
