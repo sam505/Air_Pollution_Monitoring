@@ -42,16 +42,9 @@ def plot(df):
     line_chart(df, "datetime", "humidity", "Relative Humidity (%)", "Humidity Sensor Data")
     line_chart(df, "datetime", "temperature", "Degrees Celsius (°C)", "Temperature Sensor Data")
 
-
+@st.cache_data
 def main():
-    st.set_page_config(
-        page_title="Air Pollution Dashboard",
-        page_icon="chart_with_upwards_trend",
-        layout='wide',
-        initial_sidebar_state='auto'
-    )
-    st.title("Air Pollution Dashboard")
-    filename = read_data()
+    filename = read_data("data")
     df = pd.read_csv(filename)
     df = df.dropna()
     df["timestamp"] = pd.to_datetime(df['timestamp'], unit='s')

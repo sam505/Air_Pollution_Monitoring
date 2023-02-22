@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
 import pickle
 
 
@@ -28,8 +29,8 @@ def make_prediction(start="2022-01-01", end="2022-01-05"):
     """
     main function
     """
-    model1_path = "models/model1.pkl"
-    model2_path = "models/model2.pkl"
+    model1_path = "../models/model1.pkl"
+    model2_path = "../models/model2.pkl"
     model1 = load_model(model1_path)
     model2 = load_model(model2_path)
     result1 = predict(model1, start, end)
