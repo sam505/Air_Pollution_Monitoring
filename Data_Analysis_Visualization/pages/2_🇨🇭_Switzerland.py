@@ -73,45 +73,46 @@ def main():
         st.text(f"Shape of Dataset {df.shape}")
         st.dataframe(df)
     else:
-        results = make_prediction()
-        mq7_pred = results[0]
-        mq135_pred = results[1]
+        st.info("Models in training predictions will be available soon...")
+        # results = make_prediction()
+        # mq7_pred = results[0]
+        # mq135_pred = results[1]
 
-        fig1 = go.Figure()
-        fig1.add_trace(go.Scatter(x=df.timestamp, y=df.mq7,
-                                  mode='lines',
-                                  name='Actual'))
-        fig1.add_trace(go.Scatter(x=mq7_pred.index, y=mq7_pred.mean(axis=1),
-                                  mode='lines',
-                                  name='Predicted'))
-        fig1.update_xaxes(title_text='Date/Time')
-        fig1.update_yaxes(title_text="Parts Per Million")
-        fig1.update_layout(
-            title={
-                'text': "MQ7 Sensor Data vs Forecasted Values against Time",
-                'x': 0.5,
-                'xanchor': 'center',
-                'yanchor': 'top'
-            })
-        st.plotly_chart(fig1, use_container_width=True)
+        # fig1 = go.Figure()
+        # fig1.add_trace(go.Scatter(x=df.timestamp, y=df.mq7,
+        #                           mode='lines',
+        #                           name='Actual'))
+        # fig1.add_trace(go.Scatter(x=mq7_pred.index, y=mq7_pred.mean(axis=1),
+        #                           mode='lines',
+        #                           name='Predicted'))
+        # fig1.update_xaxes(title_text='Date/Time')
+        # fig1.update_yaxes(title_text="Parts Per Million")
+        # fig1.update_layout(
+        #     title={
+        #         'text': "MQ7 Sensor Data vs Forecasted Values against Time",
+        #         'x': 0.5,
+        #         'xanchor': 'center',
+        #         'yanchor': 'top'
+        #     })
+        # st.plotly_chart(fig1, use_container_width=True)
 
-        fig2 = go.Figure()
-        fig2.add_trace(go.Scatter(x=df.timestamp, y=df.mq135,
-                                  mode='lines',
-                                  name='Actual'))
-        fig2.add_trace(go.Scatter(x=mq135_pred.index, y=mq135_pred.mean(axis=1),
-                                  mode='lines',
-                                  name='Predicted'))
-        fig2.update_xaxes(title_text='Date/Time')
-        fig2.update_yaxes(title_text="Parts Per Million")
-        fig2.update_layout(
-            title={
-                'text': "MQ135 Sensor Data vs Forecasted Values against Time",
-                'x': 0.5,
-                'xanchor': 'center',
-                'yanchor': 'top'
-            })
-        st.plotly_chart(fig2, use_container_width=True)
+        # fig2 = go.Figure()
+        # fig2.add_trace(go.Scatter(x=df.timestamp, y=df.mq135,
+        #                           mode='lines',
+        #                           name='Actual'))
+        # fig2.add_trace(go.Scatter(x=mq135_pred.index, y=mq135_pred.mean(axis=1),
+        #                           mode='lines',
+        #                           name='Predicted'))
+        # fig2.update_xaxes(title_text='Date/Time')
+        # fig2.update_yaxes(title_text="Parts Per Million")
+        # fig2.update_layout(
+        #     title={
+        #         'text': "MQ135 Sensor Data vs Forecasted Values against Time",
+        #         'x': 0.5,
+        #         'xanchor': 'center',
+        #         'yanchor': 'top'
+        #     })
+        # st.plotly_chart(fig2, use_container_width=True)
 
 
 if __name__ == "__main__":
