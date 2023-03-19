@@ -71,9 +71,9 @@ def main():
         df = df[(df['date'] >= date_range[0]) & (df['date'] <= date_range[1])]
         plot(df)
         st.text(f"Shape of Dataset {df.shape}")
-        st.dataframe(df)
+        # st.dataframe(df)
     else:
-        st.info("Models in training predictions will be available soon...")
+        st.warning("Models in training. Predictions will be available soon...")
         # results = make_prediction()
         # mq7_pred = results[0]
         # mq135_pred = results[1]
