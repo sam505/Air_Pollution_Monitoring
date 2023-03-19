@@ -70,7 +70,7 @@ def main():
         )
         df = df[(df['date'] >= date_range[0]) & (df['date'] <= date_range[1])]
         plot(df)
-        st.text(f"Shape of Dataset {df.shape}")
+        # st.text(f"Shape of Dataset {df.shape}")
         # st.dataframe(df)
     else:
         st.warning("Models in training. Predictions will be available soon...")
