@@ -5,8 +5,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-import cProfile
-import pstats
+
 
 
 def line_chart(df, x, y, units, title):
@@ -60,8 +59,8 @@ def show_actual(df, select_data):
     )
     df = df[(df['date'] >= date_range[0]) & (df['date'] <= date_range[1])]
     plot(df)
-    st.text(f"Shape of Dataset {df.shape}")
-    st.dataframe(df)
+    # st.text(f"Shape of Dataset {df.shape}")
+    # st.dataframe(df)
 
 
 @st.cache_data
@@ -135,10 +134,4 @@ def main():
 
 
 if __name__ == "__main__":
-    with cProfile.Profile() as profile:
-        main()
-
-    results = pstats.Stats(profile)
-    results.sort_stats(pstats.SortKey.TIME)
-    results.print_stats()
-    results.dump_stats("kenya.prof")
+    main()
