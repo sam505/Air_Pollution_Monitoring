@@ -122,4 +122,4 @@ if __name__ == "__main__":
     results = pstats.Stats(profile)
     results.sort_stats(pstats.SortKey.TIME)
     results.print_stats()
-    results.dump_stats("results.prof")
+    results.dump_stats("kenya.prof")
