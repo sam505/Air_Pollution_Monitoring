@@ -106,6 +106,7 @@ def show_predictions(df):
     st.plotly_chart(fig2, use_container_width=True)
 
 
+@st.cache_resource
 @st.cache_data
 def load_data():
     filename = read_data("data")

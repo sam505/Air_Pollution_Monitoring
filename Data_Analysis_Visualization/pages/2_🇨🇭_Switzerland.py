@@ -47,6 +47,7 @@ def plot(df):
     line_chart(df, "datetime", "temperature", "Degrees Celsius (°C)", "Temperature Sensor Data")
 
 
+@st.cache_resource
 @st.cache_data
 def load_data():
     filename = read_data("Swiss")
