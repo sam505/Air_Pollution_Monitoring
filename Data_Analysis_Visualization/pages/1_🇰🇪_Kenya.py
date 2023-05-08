@@ -5,6 +5,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
+import cProfile
+import pstats
 
 
 def line_chart(df, x, y, units, title):
@@ -114,4 +116,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    with cProfile.Profile() as profile:
+        main()
+
+    results = pstats.Stats(profile)
+    results.sort_stats(pstats.SortKey.TIME)
+    results.print_stats()
+    results.dump_stats("results.prof")
