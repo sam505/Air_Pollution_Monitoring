@@ -5,7 +5,11 @@ st.set_page_config(
         page_title="Air Pollution Dashboard",
         page_icon="chart_with_upwards_trend",
         layout='centered',
-        initial_sidebar_state='auto'
+        initial_sidebar_state='auto',
+        menu_items = {
+            "Get Help": "mailto:mainasamuel505@gmail.com",
+            "Report a Bug": "mailto:mainasamuel505@gmail.com"
+        }
     )
 
 
