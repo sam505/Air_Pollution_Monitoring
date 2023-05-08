@@ -23,6 +23,7 @@ def line_chart(df, x, y, units, title):
     st.plotly_chart(fig, use_container_width=True)
 
 
+@st.cache_data
 def sample_data(df, choice):
     if choice == "Hourly":
         raw_df = df.set_index("timestamp")
@@ -50,8 +51,15 @@ def plot(df):
 @st.cache_data
 def load_data():
     filename = read_data("Swiss")
+    df = pd.read_csv(filename)
+    df = df.dropna()
+    df["timestamp"] = pd.to_datetime(df['timestamp'], unit='s')
+    df["timestamp"] = df["timestamp"].dt.tz_localize("UTC", ambiguous='infer')
+    raw_df = df.set_index("timestamp")
+    df = raw_df.resample(rule='5T').mean()
+    df.reset_index(inplace=True)
 
-    return pd.read_csv(filename)
+    return df
 
 
 @st.cache_data(experimental_allow_widgets=True)
@@ -80,9 +88,6 @@ def show_predictions():
 
 def main():
     df = load_data()
-    df = df.dropna()
-    df["timestamp"] = pd.to_datetime(df['timestamp'], unit='s')
-    df["timestamp"] = df["timestamp"].dt.tz_localize("UTC", ambiguous='infer')
     data_type = st.sidebar.radio(
         "Choose the Data to Visualize",
         ('Actual', 'Predicted'))

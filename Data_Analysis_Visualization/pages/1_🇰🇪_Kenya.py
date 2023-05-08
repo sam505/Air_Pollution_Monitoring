@@ -110,16 +110,17 @@ def show_predictions(df):
 @st.cache_data
 def load_data():
     filename = read_data("data")
+    df = pd.read_csv(filename)
+    df = df.dropna()
+    df["timestamp"] = pd.to_datetime(df['timestamp'], unit='s')
+    df["timestamp"] = df["timestamp"].dt.tz_localize("UTC")
 
-    return pd.read_csv(filename)
+    return df
     
 
 
 def main():
     df = load_data()
-    df = df.dropna()
-    df["timestamp"] = pd.to_datetime(df['timestamp'], unit='s')
-    df["timestamp"] = df["timestamp"].dt.tz_localize("UTC")
     data_type = st.sidebar.radio(
         "Choose the Data to Visualize",
         ('Actual', 'Predicted'))
