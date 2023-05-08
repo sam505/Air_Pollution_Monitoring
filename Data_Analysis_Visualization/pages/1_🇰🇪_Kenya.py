@@ -38,6 +38,7 @@ def sample_data(df, choice):
         return df
 
 
+@st.cache_data
 def plot(df):
     line_chart(df, "datetime", "mq7", "Parts Per Million (PPM), CO", "MQ7 Sensor Data")
     line_chart(df, "datetime", "mq135", "Parts Per Million (PPM), Air Quality", "MQ135 Sensor Data")
