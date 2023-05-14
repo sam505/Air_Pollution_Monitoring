@@ -17,8 +17,8 @@
 #include "addons/RTDBHelper.h"
 
 // Insert your network credentials
-#define WIFI_SSID "Access"
-#define WIFI_PASSWORD "s12345678m"
+#define WIFI_SSID "Home"
+#define WIFI_PASSWORD "Home123M1"
 
 // Insert Firebase project API Key
 #define API_KEY "AIzaSyBs6sAl-s6FhpNSiQG0uNH85KCChs7ETLk"
@@ -141,14 +141,14 @@ void loop(){
   values = "#" + String(mg7AV) + "#" + String(mq8AV) + "#"+ String(mq135AV) + "#" + String(mq7DV) + "#" + String(mq8DV) + "#" + String(mq135DV) + "#" + String(temperature)+ "#" + String(humidity)+"#";
   Serial.println(values);
   Serial.flush();
-  delay(10000);                                  // wait 10 seconds for next reading
+  delay(10000);                                  // wait 15 seconds for next reading
   if (Firebase.ready() && signupOK && (millis() - sendDataPrevMillis > 15000 || sendDataPrevMillis == 0)){
     sendDataPrevMillis = millis();
     // Write an Int number on the database path test/int
     epochTime = getTime();
 
     // Write an sensor data on the database path Swiss
-    if (Firebase.RTDB.setString(&fbdo, "Swiss/" + String(epochTime), values)){
+    if (Firebase.RTDB.setString(&fbdo, "Home/" + String(epochTime), values)){
       Serial.println("PASSED");
       Serial.println("PATH: " + fbdo.dataPath());
       Serial.println("TYPE: " + fbdo.dataType());
