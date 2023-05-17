@@ -87,6 +87,12 @@ def show_predictions():
 
 
 def main():
+    df = pd.DataFrame(
+        [[46.9480, 7.4474]], 
+        columns=["lat", "lon"])
+
+    st.map(df)
+
     df = load_data()
     data_type = st.sidebar.radio(
         "Choose the Data to Visualize",
@@ -103,4 +109,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

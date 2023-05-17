@@ -26,7 +26,7 @@ st.write("Our dashboard is updated every 15 minutes, providing you with the most
 st.write("We hope that our air quality visualization dashboard will help you make informed decisions about your health and well-being, as well as contribute to a cleaner and healthier environment for everyone. Thank you for using our dashboard!")
 
 df = pd.DataFrame(
-    [[1.2921, 36.8219], [0.3689, 35.2863], [46.9480, 7.4474]], 
+    [[-1.2921, 36.8219], [-0.3689, 35.2863], [46.9480, 7.4474]], 
     columns=["lat", "lon"])
 
 st.map(df)

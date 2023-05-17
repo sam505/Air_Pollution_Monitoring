@@ -120,6 +120,13 @@ def load_data():
 
 
 def main():
+    df = pd.DataFrame(
+        [[-1.2921, 36.8219], [-0.3689, 35.2863]], 
+        columns=["lat", "lon"]
+        )
+
+    st.map(df)
+
     df = load_data()
     data_type = st.sidebar.radio(
         "Choose the Data to Visualize",
