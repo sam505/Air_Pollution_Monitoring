@@ -8,6 +8,28 @@ regions = {
     "data": "Kericho",
     "Home": "Nairobi"
 }
+region = None
+data_type = None
+select_data = None
+
+
+@st.cache_data(experimental_allow_widgets=True)
+def initialize_sidebar(name):
+    df = load_data(name)
+
+    data_type = st.sidebar.radio(
+        "Choose the Data to Visualize",
+        ('Actual', 'Predicted'))
+    if data_type == "Actual":
+        select_data = st.sidebar.selectbox(
+            "Sample Data By:",
+            ("Actual", "Hourly", "Daily")
+        )
+        show_actual(df, select_data, name)
+    else:
+        show_predictions(df, name)
+
+
 
 
 def main():
@@ -21,30 +43,18 @@ def main():
     if region[0]:
         name = "data"
         plot_map(df[df.City == regions[name]])
+        initialize_sidebar(name)
         
 
     elif region[1]:
         name = "Home"
         plot_map(df[df.City == regions[name]])
+        initialize_sidebar(name)
 
     else:
         plot_map(df)
 
-    if sum(region) != 0:
-        df = load_data(name)
-
-        data_type = st.sidebar.radio(
-            "Choose the Data to Visualize",
-            ('Actual', 'Predicted'))
-        if data_type == "Actual":
-            select_data = st.sidebar.selectbox(
-                "Sample Data By:",
-                ("Actual", "Hourly", "Daily")
-            )
-            show_actual(df, select_data, name)
-        else:
-            show_predictions(df, name)
-
+        
 
 if __name__ == "__main__":
     main()

@@ -46,7 +46,7 @@ def main():
         )
         show_actual(df, select_data, name)
     else:
-        show_predictions(name)
+        show_predictions(df, name)
 
 
 if __name__ == "__main__":
