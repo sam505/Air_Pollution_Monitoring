@@ -51,7 +51,7 @@ def read_data(name):
             assert raw_values[1] != "#"
             if name == "data":
                 values = raw_values.split("#")[1:5]
-            elif name == "Swiss":
+            else:
                 values = raw_values.split("#")[1:9]
 
             for i in range(4):
@@ -74,7 +74,7 @@ def read_data(name):
                 temp.append(float(values[2]))
                 humidity.append(float(values[3]))
             
-            elif name == "Swiss":
+            else:
                 datetime.append(variable)
                 mq7.append(float(values[0]))
                 mq8.append(float(values[1]))
@@ -90,7 +90,7 @@ def read_data(name):
             "temperature": temp,
             "humidity": humidity
         }
-    elif name == "Swiss":
+    else:
         values_dict = {
             "timestamp": datetime,
             "mq7": mq7,
