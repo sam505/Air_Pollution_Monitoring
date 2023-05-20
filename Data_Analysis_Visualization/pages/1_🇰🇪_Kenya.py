@@ -41,13 +41,13 @@ def main():
     region = [st.sidebar.button(name) for name in df.City.unique()]
         
     if region[0]:
-        name = "data"
+        name = list(regions.keys())[0]
         plot_map(df[df.City == regions[name]])
         initialize_sidebar(name)
         
 
     elif region[1]:
-        name = "Home"
+        name = list(regions.keys())[1]
         plot_map(df[df.City == regions[name]])
         initialize_sidebar(name)
 
