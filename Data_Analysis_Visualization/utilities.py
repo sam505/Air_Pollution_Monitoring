@@ -7,7 +7,6 @@ from data_analysis import read_data
 from make_predictions import make_prediction
 
 
-@st.cache_data
 def load_data(name):
     filename = read_data(name)
     df = pd.read_csv(filename)
