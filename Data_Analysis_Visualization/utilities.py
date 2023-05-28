@@ -15,10 +15,8 @@ def load_data(name):
     if name == "Swiss":
         df["timestamp"] = df["timestamp"].dt.tz_localize("UTC", ambiguous='infer')
     else:
-         df["timestamp"] = df["timestamp"].dt.tz_localize("Asia/Dhaka")
+         df["timestamp"] = df["timestamp"].dt.tz_localize("Africa/Nairobi")
     
-    # df["timestamp"] = df["timestamp"].dt.strftime('%Y-%m-%dT%H:%M:%SZ')  # non-ISO serialization
-    st.dataframe(df.tail())
     if name != "data":
         raw_df = df.set_index("timestamp")
         df = raw_df.resample(rule='5T').mean()
