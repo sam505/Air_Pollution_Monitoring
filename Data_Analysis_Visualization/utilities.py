@@ -14,9 +14,12 @@ def load_data(name):
     df["timestamp"] = pd.to_datetime(df['timestamp'], unit='s')
     if name == "Swiss":
         df["timestamp"] = df["timestamp"].dt.tz_localize("UTC", ambiguous='infer')
+        diff = 2
     else:
+         diff = 3
          df["timestamp"] = df["timestamp"].dt.tz_localize("Africa/Nairobi")
-    
+
+    df["timestamp"] = df["timestamp"] + pd.Timedelta(hours=diff)
     if name != "data":
         raw_df = df.set_index("timestamp")
         df = raw_df.resample(rule='5T').mean()
