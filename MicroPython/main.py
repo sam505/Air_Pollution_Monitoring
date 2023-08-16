@@ -16,21 +16,34 @@ mq7_analog = ADC(Pin(34, Pin.IN))
 lan = network.WLAN(network.STA_IF)
 lan.active(True)
 
-if not lan.isconnected():
-    lan.connect(ssid, password)
-    if not lan.isconnected():
-        pass
-    print("Network Config:", lan.ifconfig())
+print("Network Status:", lan.scan())
 
-while True:
-    mq7_a = mq7_analog.read_u16()
-    print(mq7_a)
-    print("LED toggling...")
-    led.on()
-    time.sleep(0.1)
-    led.off()
-    time.sleep(0.1)
-    led.on()
-    time.sleep(0.1)
-    led.off()
-    time.sleep(0.7)
+
+def wifi_connect():
+    if not lan.isconnected():
+        print("Network Status:", lan.scan())
+        lan.connect(ssid, password)
+        while not lan.isconnected():
+            time.sleep(5)
+            pass
+        print("Network Config:", lan.ifconfig())
+
+
+def main():
+    wifi_connect()
+    while True:
+        mq7_a = mq7_analog.read_u16()
+        print("MQ7:", mq7_a)
+        print("LED toggling...")
+        led.on()
+        time.sleep(0.1)
+        led.off()
+        time.sleep(0.1)
+        led.on()
+        time.sleep(0.1)
+        led.off()
+        time.sleep(0.7)
+
+
+if __name__ == "__main__":
+    main()
