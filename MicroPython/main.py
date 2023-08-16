@@ -1,5 +1,6 @@
 from machine import Pin, ADC
 import time
+import dht
 import network
 
 # TODO: Store these credentials as environment variables
@@ -11,6 +12,9 @@ password = "Home123M1"
 
 led = Pin(2, Pin.OUT)
 mq7_analog = ADC(Pin(34, Pin.IN))
+
+dht_pin = 25
+dht_sensor = dht.DHT11(Pin(dht_pin))
 
 # connecting to Wi-Fi
 lan = network.WLAN(network.STA_IF)
@@ -29,12 +33,21 @@ def wifi_connect():
         print("Network Config:", lan.ifconfig())
 
 
+def get_temp_humidity():
+    dht_sensor.measure()
+    temp = dht_sensor.temperature()
+    humidity = dht_sensor.humidity()
+
+    return temp, humidity
+
+
 def main():
-    wifi_connect()
+    # wifi_connect()
     while True:
         mq7_a = mq7_analog.read_u16()
         print("MQ7:", mq7_a)
         print("LED toggling...")
+        print(get_temp_humidity())
         led.on()
         time.sleep(0.1)
         led.off()
