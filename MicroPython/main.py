@@ -4,11 +4,11 @@ import dht
 import network
 
 # TODO: Store these credentials as environment variables
-# ssid = "Galaxy A51 D22F"
-# password = "tqmy4554"
+ssid = "network"
+password = "network@123"
 
-ssid = "Home"
-password = "Home123M1"
+# ssid = "Home"
+# password = "Home123M1"
 
 led = Pin(2, Pin.OUT)
 mq7_analog = ADC(Pin(34, Pin.IN))
@@ -41,21 +41,26 @@ def get_temp_humidity():
     return temp, humidity
 
 
+def blink_led():
+    led.on()
+    time.sleep(0.1)
+    led.off()
+    time.sleep(0.1)
+    led.on()
+    time.sleep(0.1)
+    led.off()
+    time.sleep(0.7)
+
+
 def main():
-    # wifi_connect()
+    wifi_connect()
     while True:
         mq7_a = mq7_analog.read_u16()
         print("MQ7:", mq7_a)
         print("LED toggling...")
         print(get_temp_humidity())
-        led.on()
-        time.sleep(0.1)
-        led.off()
-        time.sleep(0.1)
-        led.on()
-        time.sleep(0.1)
-        led.off()
-        time.sleep(0.7)
+        blink_led()
+
 
 
 if __name__ == "__main__":
