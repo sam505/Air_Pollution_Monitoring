@@ -23,14 +23,14 @@ mq135_digital = Pin(26, Pin.IN)
 dht_pin = 25
 dht_sensor = dht.DHT11(Pin(dht_pin))
 
-# connecting to Wi-Fi
-lan = network.WLAN(network.STA_IF)
-lan.active(True)
-
-print("Network Status:", lan.scan())
-
 
 def wifi_connect():
+    """
+    Function to connect to wifi
+    :return:
+    """
+    lan = network.WLAN(network.STA_IF)
+    lan.active(True)
     if not lan.isconnected():
         print("Network Status:", lan.scan())
         lan.connect(ssid, password)
@@ -72,6 +72,11 @@ def get_sensors_data():
 
 
 def main():
+    """
+    Main function to run the logic
+
+    :return:
+    """
     wifi_connect()
     while True:
         sensors_data = get_sensors_data()
