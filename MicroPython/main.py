@@ -11,7 +11,14 @@ password = "network@123"
 # password = "Home123M1"
 
 led = Pin(2, Pin.OUT)
-mq7_analog = ADC(Pin(34, Pin.IN))
+mq7_analog = ADC(Pin(34))
+mq8_analog = ADC(Pin(32))
+mq135_analog = ADC(Pin(33))
+
+mq7_digital = Pin(14, Pin.IN)
+mq8_digital = Pin(27, Pin.IN)
+mq135_digital = Pin(26, Pin.IN)
+
 
 dht_pin = 25
 dht_sensor = dht.DHT11(Pin(dht_pin))
@@ -52,15 +59,26 @@ def blink_led():
     time.sleep(0.7)
 
 
+def get_sensors_data():
+    mq7_a = mq7_analog.read_u16()
+    mq8_a = mq8_analog.read_u16()
+    mq135_a = mq135_analog.read_u16()
+
+    mq7_d = mq7_digital.value()
+    mq8_d = mq8_digital.value()
+    mq135_d = mq135_digital.value()
+
+    return mq7_a, mq8_a, mq135_a, mq7_d, mq8_d, mq135_d
+
+
 def main():
     wifi_connect()
     while True:
-        mq7_a = mq7_analog.read_u16()
-        print("MQ7:", mq7_a)
+        sensors_data = get_sensors_data()
+        print("Sensors:", sensors_data)
         print("LED toggling...")
         print(get_temp_humidity())
         blink_led()
-
 
 
 if __name__ == "__main__":
