@@ -49,6 +49,10 @@ def get_temp_humidity():
 
 
 def blink_led():
+    """
+
+    :return:
+    """
     led.on()
     time.sleep(0.1)
     led.off()
