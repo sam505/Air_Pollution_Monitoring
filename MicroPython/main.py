@@ -41,6 +41,10 @@ def wifi_connect():
 
 
 def get_temp_humidity():
+    """
+
+    :return:
+    """
     dht_sensor.measure()
     temp = dht_sensor.temperature()
     humidity = dht_sensor.humidity()
