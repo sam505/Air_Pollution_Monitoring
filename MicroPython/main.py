@@ -68,6 +68,10 @@ def blink_led():
 
 
 def get_sensors_data():
+    """
+
+    :return:
+    """
     mq7_a = mq7_analog.read_u16()
     mq8_a = mq8_analog.read_u16()
     mq135_a = mq135_analog.read_u16()
