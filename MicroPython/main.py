@@ -69,8 +69,9 @@ def blink_led():
 
 def get_sensors_data():
     """
+    Function that reads sensor values from the declared sensor pins
 
-    :return:
+    :return: Individual sensor values both analog and digital values
     """
     mq7_a = mq7_analog.read_u16()
     mq8_a = mq8_analog.read_u16()
