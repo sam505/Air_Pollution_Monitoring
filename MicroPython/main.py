@@ -26,7 +26,8 @@ dht_sensor = dht.DHT11(Pin(dht_pin))
 
 def wifi_connect():
     """
-    Function to connect to wifi
+    Function to connect to the Wi-Fi using the credentials given
+
     :return:
     """
     lan = network.WLAN(network.STA_IF)
@@ -42,6 +43,7 @@ def wifi_connect():
 
 def get_temp_humidity():
     """
+    Function to connect to the DHT11 sensor and obtain the values of temperature and humidity
 
     :return:
     """
@@ -90,7 +92,7 @@ def main():
 
     :return:
     """
-    wifi_connect()
+    # wifi_connect()
     while True:
         sensors_data = get_sensors_data()
         print("Sensors:", sensors_data)
